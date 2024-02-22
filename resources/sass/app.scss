@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+//@import url('https://fonts.googleapis.com/css2?family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import '~@fortawesome/fontawesome-free/css/all.css';
+// OverlayScrollbars
+@import '~overlayscrollbars/css/OverlayScrollbars.css';
+// iCheck
+@import '~icheck-bootstrap/icheck-bootstrap.css';
+// AdminLTE
+@import '../../vendor/almasaeed2010/adminlte/dist/css/adminlte.css';
+
+@import '~owl.carousel/dist/assets/owl.carousel.css';
+@import '~owl.carousel';
+@import "~dropify/dist/css/dropify.min.css";
+@import "~select2/dist/css/select2.css";
+@import "~datatables.net-bs4";
+@import "~datatables.net-responsive-bs4";
+
+// Variables
+@import 'variables';
+
+body {
+    font-family: 'Sarabun', sans-serif;
+}
+
+
+.ogn-stock-yellow {
+    background-color: $ogn-stock-yellow;
+    text-align: center;
+}
+.ogn-stock-cream {
+    background-color: $ogn-stock-cream;
+}
+.ogn-stock-green {
+    background-color: $ogn-stock-green;
+}
+.ogn-stock-grey {
+    background-color: $ogn-stock-grey;
+}
+.text-ogn-yellow {
+    color: $ogn-stock-yellow !important;
+}
+.text-ogn-cream {
+    color: $ogn-stock-cream !important;
+}
+.text-ogn-green {
+    color: $ogn-stock-green !important;
+}
+.text-ogn-grey {
+    color: $ogn-stock-grey !important;
+}
+
+.navbar-ogn-green {
+    background-color: $ogn-stock-green ;
+    color: #fff;
+}
+
+.sidebar-dark-ogn-green .nav-sidebar > .nav-item > .nav-link.active, .sidebar-light-ogn-green .nav-sidebar > .nav-item > .nav-link.active {
+    background-color: $ogn-stock-green;
+    color: #fff;
+    border-top-right-radius: 10px;
+}
+[class*="sidebar-light-"] .nav-sidebar > .nav-item.menu-open > .nav-link, [class*="sidebar-light-"] .nav-sidebar > .nav-item:hover > .nav-link {
+    border-top-right-radius: 10px;
+}
+[class*="sidebar-light"] .nav-legacy.nav-sidebar > .nav-item > .nav-link.active {
+     color: #fff;
+    border-top-right-radius: 10px;
+}
+[class*="sidebar-light"] .nav-legacy .nav-treeview > .nav-item > .nav-link.active, [class*="sidebar-light"] .nav-legacy .nav-treeview > .nav-item > .nav-link:focus, [class*="sidebar-light"] .nav-legacy .nav-treeview > .nav-item > .nav-link:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #000;
+}
+
+.nav-sidebar .nav-header {
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.5rem 0.75rem;
+    border-top: 2px solid #9bc56d;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+.brand-link .brand-image {
+    margin-top: -20px;
+    max-height: 70px;
+    position: absolute;
+}
+
+.ogn-stock-green.card-outline {
+    border-top: 3px solid $ogn-stock-green;
+}
+.ogn-stock-yellow.card-outline {
+    border-top: 3px solid $ogn-stock-yellow;
+}
+.ogn-stock-cream.card-outline {
+    border-top: 3px solid $ogn-stock-cream;
+}
+
+.form-control:focus {
+    border-color: $ogn-stock-green !important;
+}
+.login-card-body .input-group .form-control:focus ~ .input-group-prepend .input-group-text, .login-card-body .input-group .form-control:focus ~ .input-group-append .input-group-text, .register-card-body .input-group .form-control:focus ~ .input-group-prepend .input-group-text, .register-card-body .input-group .form-control:focus ~ .input-group-append .input-group-text {
+    border-color: $ogn-stock-green !important;
+}

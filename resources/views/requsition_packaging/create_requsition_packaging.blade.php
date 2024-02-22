@@ -1,0 +1,386 @@
+@extends('adminlte::page')
+
+@section('css')
+<style>
+    .modal-full {
+        min-width: 65%;
+        margin-left: 80;
+    }
+
+    .template_row:first-child {
+        display: none;
+        margin: 0 auto;
+    }
+    .mat_hide {
+        display: none;
+    }
+    .error {
+        color: red;
+    }
+</style>
+@endsection
+
+@section('content_header')
+<div class="container-fluid">
+    <div class="row mb-2">
+        <div class="col-sm-12">
+            <ol class="breadcrumb float-sm-left">
+                <li class="breadcrumb-item"><a href="{{ route('home') }}">หน้าแรก</a></li>
+                <li class="breadcrumb-item active"><a href="{{ route('requsition.packaging') }}">รายการเบิกบรรจุภัณฑ์</a></li>
+                <li class="breadcrumb-item active">เพิ่มรายการเบิกบรรจุภัณฑ์</li>
+            </ol>
+        </div><!-- /.col -->
+
+    </div><!-- /.row -->
+</div><!-- /.container-fluid -->
+
+@stop
+
+@section('content')
+<div class="card">
+    <div class="card-body">
+        <form id="form_valid">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-3 ">
+                        <label for="" class="form-label text-md">รายการบรรจุภัณฑ์</label>
+                        <select name="" id="packaging_id" class="form-control select2">
+                            @foreach ( $packagings as $packaging )
+                                @if ($packaging->record_status === 1)
+                                    <option value="{{$packaging->id}}" data-name="{{$packaging->name}}">{{$packaging->name}} : จำนวน {{ number_format($packaging->stockremain) }} {{$packaging->volumetric_unit}}</option>
+                                @endif
+                            @endforeach
+                        </select>
+
+                        <input type="hidden" name="_token" id="_token" value="{{ Session::token() }}">
+                        <input type="hidden" name="id" id="id" value="">
+                    </div>
+                    <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8 mb-3 ">
+                        <label for="" class="form-label">ล็อตบรรจุภัณฑ์ : จำนวนคงเหลือ</label>
+                        <select name="" id="packaging_lot_id" class="form-control">
+
+                        </select>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4 mb-3 ">
+                                <label for="" class="form-label">จำนวน</label>
+                                <input type="number" id="qty" name="qty" class="form-control" required>
+
+                    </div>
+                </div>
+        </form>
+    </div>
+    <div class="card-footer bg-transparent text-right">
+            <button type="button" class="btn btn-save ogn-stock-green text-white add-to-table2" style=" color:black;"><em class="fas fa-plus-circle"></em> เพิ่มเข้ารายการเบิก</button>
+    </div>
+</div>
+<div class="card">
+    <div class="card-header ogn-stock-yellow text-left ">
+    <em class="fas fa-file-alt text-gray"></em> ใบเบิกบรรจุภัณฑ์
+    </div>
+    <div class="card-body">
+    <form action="" id="receive_valid">
+    <div class="row">
+        <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4 ">
+            <label for="" class="form-label">หมายเลขเอกสาร</label>
+            <input type="text" id="paper_no" class="form-control" required>
+            <input type="hidden" name="_token" id="_token" value="{{ Session::token() }}">
+            <input type="hidden" name="id" id="id" value="">
+            <input type="hidden" name="user_id" id="user_id" value="{{auth()->user()->id}}">
+            <small id="checkpaper_no"></small>
+        </div>
+
+        <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4 ">
+            <label for="" class="form-label">ชื่อสินค้าที่ผลิต</label>
+            <input type="text" name="product_name" id="product_name" class="form-control" required>
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4 ">
+            <label for="" class="form-label">วันที่เบิก</label>
+            <input type="datetime-local" id="date" name="date" class="form-control" required>
+            <small id="checkdate"></small>
+        </div>
+
+
+    </div>
+</form>
+<hr class="my-4">
+
+<div class="row">
+
+    <div class="col-12">
+
+        <div class="card card-outline card-gdp">
+            <div class="card-header " >
+                    <h6 class="m-0"> รายการบรรจุภัณฑ์ </h6>
+                </div>
+
+            <div class="card-body p-0">
+
+                <table id="requsition_packgaging" class="table w-100 " style="margin-top: 0!important; margin-bottom: 0!important;">
+                    <caption style="display: none"></caption>
+                    <thead class="">
+                        <tr>
+                            <th scope="col" class="w-auto">#</th>
+                            <th scope="col" class="w-auto">หมายเลขล็อตบรรจุภัณฑ์</th>
+                            <th scope="col" class="w-auto">บรรจุภัณฑ์</th>
+                            <th scope="col" class="w-auto">จำนวน</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+        <div style="text-align: right;">
+            <button class="btn ogn-stock-grey text-black btn-back"><em class="fas fa-arrow-left"></em> ย้อนกลับ</button>
+            <button class="btn ogn-stock-green text-white" id="create_receive_material2"><em class="fas fa-save"></em> บันทึก</button>
+        </div>
+    </div>
+</div>
+
+    </div> {{-- cardbody --}}
+</div>
+
+@endsection
+
+@section('js')
+<script>
+    $(function() {
+        $('.select2').select2()
+
+        $('#packaging_id').on('change',function () {
+
+            var packaging_id = $('#packaging_id').val()
+
+            $.ajax({
+                type: "post",
+                url: "{{route('api.v1.requsition.list.packaging.lot')}}",
+                data: {'packaging_id': packaging_id },
+                dataType: "json",
+                success: function (response) {
+                    $('#packaging_lot_id').find('option').remove().end()
+                        response.packaging_lots.forEach(element => {
+                            total_qty = parseFloat(element.lotremain);
+                            let formatter = new Intl.NumberFormat('th-TH', {currency: 'THB' });
+                            let total = formatter.format(total_qty);
+
+                            $('#packaging_lot_id').append(`<option value="${element.id}" data-name="${element.lot_no_pm}">
+                                ${element.lot_no_pm} : EXP ${element.exp} : จำนวน <span class="total">${total}</span> ${element.packaging.volumetric_unit}</option>`);
+
+                        });
+                }
+            });
+
+         });
+    var material = []
+
+        $('.dropify').dropify();
+        let requsition_packgaging = $('#requsition_packgaging').DataTable({
+            "pageLength": 100,
+            "responsive": true,
+            "paging": false,
+            "ordering": false,
+            "info": false,
+            columnDefs: [
+                // { responsivePriority: 1, targets: 4 },
+                {
+                    orderable: false,
+                    responsivePriority: 7,
+                    targets: [2,3]
+                }
+            ],
+            "dom": '<"top d-none">rt<"bottom d-flex position-absolute w-100 justify-content-between "ip><"clear">'
+        });
+
+        $('.add-to-table2').on('click', function(){
+
+            if ($('#form_valid').valid() && check_duplicate_numberlot()) {
+                qty_stock = $('#packaging_lot_id option:selected').find('.total').text().replace(/\,/g,'');
+
+            var    packaging_id= $('#packaging_id').val();
+            var    packaging_name= $('#packaging_id option:selected').data('name');
+            var    packaging_lot_name= $('#packaging_lot_id option:selected').data('name');
+            var    packaging_lot_id= $('#packaging_lot_id').val();
+            var    qty= $('#qty').val();
+            var    type_qty = $('#type_qty').val()
+
+            if (parseFloat(qty) > parseFloat(qty_stock)) {
+                Swal.fire({
+                    position: 'center-center',
+                    icon: 'warning',
+                    title: 'เบิกเกินจำนวนที่มีอยู่ในคลัง!',
+                    text: "กรุณากรอกจำนวนใหม่อีกครั้ง!",
+                    showConfirmButton: false,
+                    timer: 3000
+                })
+            }else{
+                var index = requsition_packgaging.rows().count();
+                var row = requsition_packgaging.row.add([
+                    '<td><a class="list_cancel"><i class="fas fa-times text-red"></i></a></td>',
+                    '<td><span class="pack_lot_id mat_hide ">'+packaging_lot_id +'</span>'+packaging_lot_name+'</span></td>',
+                    '<td><span class="pack_id mat_hide ">'+packaging_id  +'</span>'+packaging_name+'</td>',
+                    '<td><span class="pack_qty  ">'+qty +'</span> </td>',
+                ]).draw(false).nodes()
+                .to$()
+                .addClass( 'packagingrow' )
+            }
+            $(".clear-modal").click();
+            }
+
+        })
+
+        function check_duplicate_numberlot(){
+            var lot= $('#packaging_lot_id').val();
+            var status = true;
+            if (lot != "" || null) {
+                $('.packagingrow').each(function(index,value){
+                    if ( lot == $(value).find('.pack_lot_id').text()) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'ล็อตซ้ำ',
+                            text: 'กรุณากรอกล็อตใหม่!',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        status = false;
+                    }
+                })
+            }
+            return status;
+        }
+
+        $(".clear-modal").on('click', function() {
+            $(".dropify-clear").click();
+
+            $('#packaging_name').val(""),
+                $('#company_name').val(""),
+
+                $('#lot').val(""),
+                $('#qty').val("0"),
+                $('#exp').val(""),
+                $('#mfg').val(""),
+
+
+                $("#myModal").modal("hide");
+        });
+
+
+
+        $('#requsition_packgaging tbody').on('click', '.list_cancel', function() {
+            var index = requsition_packgaging.row($(this).parents('tr'));
+            var rowindex = index.index();
+            requsition_packgaging
+                .row($(this).parents('tr'))
+                .remove()
+                .draw();
+            material.splice(rowindex, 1);
+
+        });
+        $('#create_receive_material2').on('click', function() {
+
+            if ($('#receive_valid').valid()) {
+
+            var formdata_receive = new FormData();
+            // formdata_receive.append('username', 'Chris');
+            formdata_receive.append('paper_no', $('#paper_no').val());
+            formdata_receive.append('product_name', $('#product_name').val());
+            formdata_receive.append('edit_times', $('#edit_times').val());
+            formdata_receive.append('date', $('#date').val());
+            formdata_receive.append('_token', $('#_token').val());
+            formdata_receive.append('id', $('#id').val());
+            formdata_receive.append('user_id', $('#user_id').val());
+            formdata_receive.append('company_id', {{session('company')}});
+
+            $('.packagingrow').each(function(index,value){
+                formdata_receive.append('packaging['+index+'][packaging_lot_id]',$(value).find('.pack_lot_id').text())
+                formdata_receive.append('packaging['+index+'][packaging_id]',$(value).find('.pack_id').text())
+                formdata_receive.append('packaging['+index+'][qty]',$(value).find('.pack_qty').text())
+                formdata_receive.append('packaging['+index+'][date]',$(value).find('.pack_date').text())
+            })
+            var rows_packaging = requsition_packgaging.rows().count();
+                if (rows_packaging > 0) {
+                    Swal.fire({
+                                title: 'ยืนยันการเบิกบรรจุภัณฑ์?',
+                                text: "ต้องการดำเนินการใช่หรือไม่!",
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#649514',
+                                cancelButtonColor: '#a97551',
+                                confirmButtonText: 'ยืนยัน',
+                                cancelButtonText: 'ปิด'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    $.ajax({
+                                        type: "post",
+                                        url: "{{route('api.v1.requsition.packaging.create')}}",
+                                        data: formdata_receive,
+                                        contentType: false,
+                                        processData: false,
+                                        cache: false,
+                                        // dataType: "dataType",
+                                        success: function (response) {
+                                            if (response) {
+                                                Swal.fire({
+                                                    position: 'center-center',
+                                                    icon: 'success',
+                                                    title: 'เพิ่มรายการนำเข้าสำเร็จ',
+                                                    showConfirmButton: false,
+                                                    timer: 1500,
+
+                                                })
+                                                window.location.assign("{{ route('requsition.packaging') }}")
+                                            } else {
+                                                Swal.fire({
+                                                    position: 'center-center',
+                                                    icon: 'warning',
+                                                    title: 'เพิ่มรายการนำเข้าไม่สำเร็จ',
+                                                    showConfirmButton: false,
+                                                    timer: 1500
+                                                })
+                                            }
+                                        }
+                                    });
+                                }
+                            });
+                } else {
+                    Swal.fire({
+                                position: 'center-center',
+                                icon: 'warning',
+                                title: 'กรุณาเพิ่มรายการเบิกบรรจุภัณฑ์',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                }
+
+            }
+
+        })
+        $('.btn-back').on('click',function(){
+            window.history.back();
+        });
+
+    });
+
+    $(document).ready(function(){
+        var packaging_id = $('#packaging_id').val()
+
+        $.ajax({
+            type: "post",
+            url: "{{route('api.v1.requsition.list.packaging.lot')}}",
+            data: {'packaging_id': packaging_id },
+            dataType: "json",
+            success: function (response) {
+                $('#packaging_lot_id').find('option').remove().end()
+                    response.packaging_lots.forEach(element => {
+                        total_qty = parseFloat(element.lotremain);
+                        let formatter = new Intl.NumberFormat('th-TH', {currency: 'THB' });
+                        let total = formatter.format(total_qty);
+
+                        $('#packaging_lot_id').append(`<option value="${element.id}" data-name="${element.lot_no_pm}">
+                                ${element.lot_no_pm} : EXP ${element.exp} : จำนวน <span class="total">${total}</span> ${element.packaging.volumetric_unit}</option>`);
+                    });
+            }
+        });
+    })
+</script>
+@endsection

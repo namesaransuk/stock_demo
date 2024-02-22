@@ -1,0 +1,19 @@
+ALTER TABLE receive_materials ADD `company_id` INT NOT NULL DEFAULT '2' AFTER `updated_at`;
+ALTER TABLE receive_products ADD `company_id` INT NOT NULL DEFAULT '2' AFTER `updated_at`;
+ALTER TABLE receive_packagings ADD `company_id` INT NOT NULL DEFAULT '2' AFTER `updated_at`;
+ALTER TABLE receive_supplies ADD `company_id` INT NOT NULL DEFAULT '2' AFTER `updated_at`;
+
+ALTER TABLE requsition_materials ADD `company_id` INT NOT NULL DEFAULT '2' AFTER `updated_at`;
+ALTER TABLE requsition_products ADD `company_id` INT NOT NULL DEFAULT '2' AFTER `updated_at`;
+ALTER TABLE requsition_packagings ADD `company_id` INT NOT NULL DEFAULT '2' AFTER `updated_at`;
+ALTER TABLE requsition_supplies ADD `company_id` INT NOT NULL DEFAULT '2' AFTER `updated_at`;
+
+ALTER TABLE history_receive_materials ADD `company_id` INT NOT NULL DEFAULT '2' AFTER `updated_at`;
+ALTER TABLE history_receive_products ADD `company_id` INT NOT NULL DEFAULT '2' AFTER `updated_at`;
+ALTER TABLE history_receive_packagings ADD `company_id` INT NOT NULL DEFAULT '2' AFTER `updated_at`;
+ALTER TABLE history_receive_supplies ADD `company_id` INT NOT NULL DEFAULT '2' AFTER `updated_at`;
+
+ALTER TABLE history_requsition_materials ADD `company_id` INT NOT NULL DEFAULT '2' AFTER `updated_at`;
+ALTER TABLE history_requsition_products ADD `company_id` INT NOT NULL DEFAULT '2' AFTER `updated_at`;
+ALTER TABLE history_requsition_packagings ADD `company_id` INT NOT NULL DEFAULT '2' AFTER `updated_at`;
+ALTER TABLE history_requsition_supplies ADD `company_id` INT NOT NULL DEFAULT '2' AFTER `updated_at`;

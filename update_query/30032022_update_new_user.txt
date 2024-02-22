@@ -1,0 +1,101 @@
+//อัพเดทตาราง Role
+INSERT INTO `roles` (`id`, `name`, `code`, `record_status`, `created_at`, `updated_at`) VALUES
+(9, 'Stock_viewer', 'SV', 1, NULL, NULL),
+(10, 'Packaging-Supply', 'PS', 1, NULL, NULL),
+(11, 'Material', 'MT', 1, NULL, NULL),
+(12, 'FinishProduct', 'FP', 1, NULL, NULL);
+
+ALTER TABLE `employees` CHANGE `emp_no` `emp_no` VARCHAR(20) NOT NULL;
+//อัพเดทตาราง Employee
+INSERT INTO `employees` (`id`, `emp_no`, `fname`, `lname`, `tel`, `citizen_no`, `record_status`, `created_at`, `updated_at`, `prefix_id`, `company_id`) VALUES
+(23, '2203290001', 'หน่วย', 'ดูสต็อก (บริษัท ออแกนิค คอสเม่)', '0800000023', '1300000000023', 1, NULL, NULL, 3, 1),
+(24, '2203290002', 'หน่วย', 'ดูสต็อก (บริษัท ออแกนิค กรีนฟาร์ม)', '0800000024', '1300000000024', 1, NULL, NULL, 1, 2),
+(25, '2203290003', 'หน่วย', 'ดูสต็อก (บริษัท ออแกนิค อินโนเวชั่น)', '0800000025', '1300000000025', 1, NULL, NULL, 2, 3),
+(26, '2203290004', 'หน่วย', 'บรรจุภัณฑ์และวัสดุสิ้นเปลือง (บริษัท ออแกนิค คอสเม่)', '0800000026', '1300000000026', 1, NULL, NULL, 2, 1),
+(27, '2203290005', 'หน่วย', 'บรรจุภัณฑ์และวัสดุสิ้นเปลือง (บริษัท ออแกนิค คอสเม่)', '0800000027', '1300000000027', 1, NULL, NULL, 1, 2),
+(28, '2203290006', 'หน่วย', 'บรรจุภัณฑ์และวัสดุสิ้นเปลือง (บริษัท ออแกนิค คอสเม่)', '0800000028', '1300000000028', 1, NULL, NULL, 1, 3),
+(29, '2203290007', 'หน่วย', 'วัตถุดิบ (บริษัท ออแกนิค คอสเม่)', '0800000029', '1300000000029', 1, NULL, NULL, 2, 1),
+(30, '2203290008', 'หน่วย', 'วัตถุดิบ (บริษัท ออแกนิค คอสเม่)', '0800000030', '1300000000030', 1, NULL, NULL, 1, 2),
+(31, '2203290009', 'หน่วย', 'วัตถุดิบ (บริษัท ออแกนิค คอสเม่)', '0800000031', '1300000000031', 1, NULL, NULL, 1, 3),
+(32, '2203290010', 'หน่วย', 'สินค้าสำเร็จรูป (บริษัท ออแกนิค คอสเม่)', '0800000032', '1300000000032', 1, NULL, NULL, 2, 1),
+(33, '2203290011', 'หน่วย', 'สินค้าสำเร็จรูป (บริษัท ออแกนิค คอสเม่)', '0800000033', '1300000000033', 1, NULL, NULL, 1, 2),
+(34, '2203290012', 'หน่วย', 'สินค้าสำเร็จรูป (บริษัท ออแกนิค คอสเม่)', '0800000034', '1300000000034', 1, NULL, NULL, 1, 3);
+
+//อัพเดทตาราง User
+INSERT INTO `users` (`id`, `email`, `email_verified_at`, `password`, `status`, `remember_token`, `record_status`, `created_at`, `updated_at`, `emp_id`) VALUES
+(23, 'stock-viewer1@stock.com', NULL, '$2y$10$q8T3ckG/scaTx8oiV3iiI.05prkIyDnFtfdZ2G3j7MzUr.q1qfG8e', 1, NULL, 1, NULL, NULL, 23),
+(24, 'stock-viewer2@stock.com', NULL, '$2y$10$q8T3ckG/scaTx8oiV3iiI.05prkIyDnFtfdZ2G3j7MzUr.q1qfG8e', 1, NULL, 1, NULL, NULL, 24),
+(25, 'stock-viewer3@stock.com', NULL, '$2y$10$q8T3ckG/scaTx8oiV3iiI.05prkIyDnFtfdZ2G3j7MzUr.q1qfG8e', 1, NULL, 1, NULL, NULL, 25),
+(26, 'packaging-supply1@stock.com', NULL, '$2y$10$q8T3ckG/scaTx8oiV3iiI.05prkIyDnFtfdZ2G3j7MzUr.q1qfG8e', 1, NULL, 1, NULL, NULL, 26),
+(27, 'packaging-supply2@stock.com', NULL, '$2y$10$q8T3ckG/scaTx8oiV3iiI.05prkIyDnFtfdZ2G3j7MzUr.q1qfG8e', 1, NULL, 1, NULL, NULL, 27),
+(28, 'packaging-supply3@stock.com', NULL, '$2y$10$q8T3ckG/scaTx8oiV3iiI.05prkIyDnFtfdZ2G3j7MzUr.q1qfG8e', 1, NULL, 1, NULL, NULL, 28),
+(29, 'material1@stock.com', NULL, '$2y$10$q8T3ckG/scaTx8oiV3iiI.05prkIyDnFtfdZ2G3j7MzUr.q1qfG8e', 1, NULL, 1, NULL, NULL, 29),
+(30, 'material2@stock.com', NULL, '$2y$10$q8T3ckG/scaTx8oiV3iiI.05prkIyDnFtfdZ2G3j7MzUr.q1qfG8e', 1, NULL, 1, NULL, NULL, 30),
+(31, 'material3@stock.com', NULL, '$2y$10$q8T3ckG/scaTx8oiV3iiI.05prkIyDnFtfdZ2G3j7MzUr.q1qfG8e', 1, NULL, 1, NULL, NULL, 31),
+(32, 'finishproduct1@stock.com', NULL, '$2y$10$q8T3ckG/scaTx8oiV3iiI.05prkIyDnFtfdZ2G3j7MzUr.q1qfG8e', 1, NULL, 1, NULL, NULL, 32),
+(33, 'finishproduct2@stock.com', NULL, '$2y$10$q8T3ckG/scaTx8oiV3iiI.05prkIyDnFtfdZ2G3j7MzUr.q1qfG8e', 1, NULL, 1, NULL, NULL, 33),
+(34, 'finishproduct3@stock.com', NULL, '$2y$10$q8T3ckG/scaTx8oiV3iiI.05prkIyDnFtfdZ2G3j7MzUr.q1qfG8e', 1, NULL, 1, NULL, NULL, 34);
+
+//อัพเดทตาราง UserRole
+INSERT INTO `user_roles` (`id`, `user_id`, `role_id`, `created_at`, `updated_at`) VALUES
+(23, 23, 9, NULL, NULL),
+(24, 24, 9, NULL, NULL),
+(25, 25, 9, NULL, NULL),
+(26, 26, 10, NULL, NULL),
+(27, 27, 10, NULL, NULL),
+(28, 28, 10, NULL, NULL),
+(29, 29, 11, NULL, NULL),
+(30, 30, 11, NULL, NULL),
+(31, 31, 11, NULL, NULL),
+(32, 32, 12, NULL, NULL),
+(33, 33, 12, NULL, NULL),
+(34, 34, 12, NULL, NULL);
+
+//อัพเดทตาราง UserCompany
+INSERT INTO `user_companies` (`id`, `user_id`, `company_id`, `created_at`, `updated_at`) VALUES
+(25, 23, 1, NULL, NULL),
+(26, 24, 2, NULL, NULL),
+(27, 25, 3, NULL, NULL),
+(28, 26, 1, NULL, NULL),
+(29, 27, 2, NULL, NULL),
+(30, 28, 3, NULL, NULL),
+(31, 29, 1, NULL, NULL),
+(32, 30, 2, NULL, NULL),
+(33, 31, 3, NULL, NULL),
+(34, 32, 1, NULL, NULL),
+(35, 33, 2, NULL, NULL),
+(36, 34, 3, NULL, NULL);
+
+
+
+
+บริษัท ออกานิกส์ คอสเม่ จำกัด
+ดูสต็อก
+stock-viewer1@stock.com : 123456
+บรรจุภัณฑ์ วัสดุสิ้นเปลือง
+packaging-supply1@stock.com : 123456
+วัตถุดิบ
+material1@stock.com : 123456
+สินค้าสำเร็จรูป
+finishproduct1@stock.com : 123456
+
+
+บริษัท ออกานิกส์ กรีนฟาร์ม จำกัด
+ดูสต็อก
+stock-viewer2@stock.com : 123456
+บรรจุภัณฑ์ วัสดุสิ้นเปลือง
+packaging-supply2@stock.com : 123456
+วัตถุดิบ
+material2@stock.com : 123456
+สินค้าสำเร็จรูป
+finishproduct2@stock.com : 123456
+
+บริษัท ออกานิกส์ อินโนเวชั่นส์ จำกัด
+ดูสต็อก
+stock-viewer3@stock.com : 123456
+บรรจุภัณฑ์ วัสดุสิ้นเปลือง
+packaging-supply3@stock.com : 123456
+วัตถุดิบ
+material3@stock.com : 123456
+สินค้าสำเร็จรูป
+finishproduct3@stock.com : 123456

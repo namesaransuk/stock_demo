@@ -1,0 +1,1 @@
+ALTER TABLE `material_lots` CHANGE `company_id` `company_id` INT(11) NOT NULL, CHANGE `material_id` `material_id` INT(11) NULL DEFAULT NULL COMMENT 'กำหนดหลังจากตรวจสอบเสร็จแล้ว', CHANGE `receive_material_id` `receive_material_id` INT(11) NOT NULL;
